@@ -98,7 +98,9 @@ omit [DecidableEq U] in
 /-- The induced map on faces: given a face `s` of `K`, take its `Finset.image`
 under the vertex function to obtain a face of `L`. -/
 @[simps] def image_face (φ : Hom K L) (s : Face K) : Face L :=
-  ⟨s.1.image φ.toFun, by simpa using φ.map_faces s.property⟩
+  ⟨s.1.image φ.toFun,
+   ⟨by simpa using φ.map_faces s.property.left,
+    Finset.Nonempty.image s.property.right _⟩⟩
 
 /-- The induced face map of the identity morphism is the identity on faces. -/
 @[simp] lemma image_face_id (s : K.Face) :

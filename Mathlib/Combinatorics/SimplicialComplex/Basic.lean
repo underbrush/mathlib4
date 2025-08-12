@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Sebastian Kumar, Xiangyu Li
 -/
 import Mathlib.Data.Finset.Defs
+import Mathlib.Data.Finset.Empty
 
 /-!
 # Simplicial complexes
@@ -21,8 +22,8 @@ and geometric realisation are handled in later files.
 * `SimplicialComplex V` :
   a structure with `faces : Set (Finset V)` which is closed under taking subsets.
 * `Face X` :
-  the subtype of faces of a given complex `X` (i.e. `Finset V` equipped with the proof
-  that it lies in `X.faces`).
+  the subtype of nonempty faces of a given complex `X` (i.e. `Finset V` equipped with the proof
+  that it lies in `X.faces` and is nonempty).
 
 ## Implementation notes
 
@@ -57,6 +58,6 @@ namespace SimplicialComplex
 variable {V : Type u}
 
 /-- A face of `X` (as a subtype). -/
-abbrev Face (X : SimplicialComplex V) := {A : Finset V // A ∈ X.faces}
+abbrev Face (X : SimplicialComplex V) := {A : Finset V // A ∈ X.faces ∧ A.Nonempty}
 
 end SimplicialComplex

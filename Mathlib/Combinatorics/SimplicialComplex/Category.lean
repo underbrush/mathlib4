@@ -49,6 +49,9 @@ attribute [instance] SimplicialComplexCat.decU
 
 namespace SimplicialComplexCat
 
+/-- The object of `SimplicialComplexCat` associated to a simplicial complex on a decidable type. -/
+abbrev of {U : Type u} [DecidableEq U] (K : SimplicialComplex U) : SimplicialComplexCat := ⟨U, K⟩
+
 @[simp] lemma eta (A : SimplicialComplexCat) :
     SimplicialComplexCat.mk A.U A.X = A := by cases A; rfl
 
